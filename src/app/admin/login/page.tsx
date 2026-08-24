@@ -275,9 +275,24 @@ function LoginFormContent() {
         </form>
 
         <div style={{ marginTop: "1.5rem", textAlign: "center", borderTop: "1px solid var(--color-border)", paddingTop: "1rem" }}>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.72rem", color: "var(--color-muted)", margin: 0 }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.72rem", color: "var(--color-muted)", margin: "0 0 0.75rem 0" }}>
             Demo Credentials: <code>admin@cakeandbake.in</code> / <code>admin123</code>
           </p>
+          <a
+            href="/"
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.75rem",
+              fontWeight: 500,
+              color: "var(--color-green)",
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.3rem",
+            }}
+          >
+            ← Return to Bakery Storefront
+          </a>
         </div>
       </motion.div>
     </div>

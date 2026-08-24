@@ -3,10 +3,8 @@ import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
 import { ToastProvider } from "@/context/ToastContext";
-import Navbar from "@/components/layout/Navbar";
-import AnnouncementBar from "@/components/layout/AnnouncementBar";
-import Footer from "@/components/layout/Footer";
-import ToastContainer from "@/components/ui/ToastContainer";
+import { AuthProvider } from "@/context/AuthContext";
+import LayoutShell from "@/components/layout/LayoutShell";
 
 export const metadata: Metadata = {
   title: {
@@ -30,8 +28,6 @@ export const metadata: Metadata = {
   },
 };
 
-import { AuthProvider } from "@/context/AuthContext";
-
 export default function RootLayout({
   children,
 }: {
@@ -50,11 +46,7 @@ export default function RootLayout({
           <CartProvider>
             <WishlistProvider>
               <ToastProvider>
-                <AnnouncementBar />
-                <Navbar />
-                <main id="main-content">{children}</main>
-                <Footer />
-                <ToastContainer />
+                <LayoutShell>{children}</LayoutShell>
               </ToastProvider>
             </WishlistProvider>
           </CartProvider>
