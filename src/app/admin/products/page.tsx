@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Edit2, Check, X, Search, ToggleLeft, ToggleRight, Sparkles } from "lucide-react";
 import AdminHeader from "@/components/admin/AdminHeader";
@@ -11,6 +11,20 @@ export default function AdminProductsPage() {
   const [availability, setAvailability] = useState<Record<string, boolean>>({});
   const [showAddModal, setShowAddModal] = useState(false);
   const [newProduct, setNewProduct] = useState({ name: "", category: "cakes", price: 500, isEggless: true, image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80" });
+
+  useEffect(() => {
+    if (showAddModal) {
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setShowAddModal(false);
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [showAddModal]);
 
   const filtered = productList.filter((p) =>
     p.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -54,7 +68,7 @@ export default function AdminProductsPage() {
     <>
       <AdminHeader title="Product Catalog" />
 
-      <main style={{ padding: "2rem", flex: 1, overflowY: "auto" }}>
+      <main style={{ padding: "clamp(1rem, 3vw, 2rem)", flex: 1, overflowY: "auto" }}>
         {/* Controls */}
         <div
           style={{

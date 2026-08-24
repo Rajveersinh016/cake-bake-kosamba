@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Image as ImageIcon, Send, CheckCircle, Clock, X, Phone, DollarSign } from "lucide-react";
 import AdminHeader from "@/components/admin/AdminHeader";
@@ -11,6 +11,23 @@ export default function AdminCustomCakesPage() {
   const [quoteInput, setQuoteInput] = useState<number>(2500);
   const [sentSuccess, setSentSuccess] = useState(false);
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (selectedReq || lightboxImg) {
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          setLightboxImg(null);
+          setSelectedReq(null);
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [selectedReq, lightboxImg]);
 
   const handleSendQuote = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +53,7 @@ export default function AdminCustomCakesPage() {
     <>
       <AdminHeader title="Custom Cake Requests" />
 
-      <main style={{ padding: "2rem", flex: 1, overflowY: "auto" }}>
+      <main style={{ padding: "clamp(1rem, 3vw, 2rem)", flex: 1, overflowY: "auto" }}>
         <div style={{ marginBottom: "1.5rem" }}>
           <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "1.25rem", color: "var(--color-green)", margin: 0 }}>
             Incoming Design Enquiries ({requests.length})

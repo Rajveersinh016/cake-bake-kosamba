@@ -30,7 +30,7 @@ export default function AdminDashboardPage() {
     <>
       <AdminHeader title="Dashboard Overview" />
 
-      <main style={{ padding: "2rem", flex: 1, overflowY: "auto" }}>
+      <main style={{ padding: "clamp(1rem, 3vw, 2rem)", flex: 1, overflowY: "auto" }}>
         {/* KPI Metrics */}
         <div
           style={{
@@ -109,7 +109,7 @@ export default function AdminDashboardPage() {
             </div>
 
             <div style={{ overflowX: "auto" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
+              <table style={{ width: "100%", minWidth: "600px", borderCollapse: "collapse", textAlign: "left" }}>
                 <thead>
                   <tr style={{ borderBottom: "1px solid var(--color-border)" }}>
                     <th style={thStyle}>Order ID</th>

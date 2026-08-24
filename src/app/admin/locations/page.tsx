@@ -21,7 +21,7 @@ export default function AdminLocationsPage() {
     <>
       <AdminHeader title="Store Locations & Outlets" />
 
-      <main style={{ padding: "2rem", flex: 1, overflowY: "auto" }}>
+      <main style={{ padding: "clamp(1rem, 3vw, 2rem)", flex: 1, overflowY: "auto" }}>
         <div style={{ marginBottom: "1.5rem" }}>
           <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "1.25rem", color: "var(--color-green)", margin: 0 }}>
             Connected Bakery Outlets ({locations.length})
